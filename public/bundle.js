@@ -50,17 +50,29 @@
 	var ReactDOM = __webpack_require__(158);
 	var MyTitle = __webpack_require__(159);
 
-	var MyFirstComponent = function MyFirstComponent() {
+	var App = function App() {
 	  return React.createElement(
 	    'div',
-	    null,
-	    React.createElement(MyTitle, { title: 'Trying out JSX!', color: 'rebeccapurple' }),
-	    React.createElement(MyTitle, { title: 'It\'s not that awkward!', color: 'mediumaquamarine' }),
-	    React.createElement(MyTitle, { title: 'Starting to grow on me.', color: 'papayawhip' })
+	    { className: 'app-container' },
+	    React.createElement(
+	      'div',
+	      { className: 'home-info' },
+	      React.createElement(
+	        'h1',
+	        { className: 'title' },
+	        'svideo'
+	      ),
+	      React.createElement('input', { className: 'search', type: 'text', placeholder: 'Search' }),
+	      React.createElement(
+	        'button',
+	        { className: 'browse-all' },
+	        ' or Browse All'
+	      )
+	    )
 	  );
 	};
 
-	ReactDOM.render(React.createElement(MyFirstComponent, null), document.getElementById('app'));
+	ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
