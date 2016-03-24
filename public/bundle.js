@@ -25027,6 +25027,11 @@
 
 	var React = __webpack_require__(1);
 
+	var _require = __webpack_require__(159);
+
+	var Link = _require.Link;
+
+
 	var Landing = function Landing() {
 	  return React.createElement(
 	    'div',
@@ -25041,8 +25046,8 @@
 	      ),
 	      React.createElement('input', { className: 'search', type: 'text', placeholder: 'Search' }),
 	      React.createElement(
-	        'button',
-	        { className: 'browse-all' },
+	        Link,
+	        { to: '/search', className: 'browse-all' },
 	        ' or Browse All'
 	      )
 	    )
