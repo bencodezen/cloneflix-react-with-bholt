@@ -48,15 +48,19 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var div = React.DOM.div;
 	var MyTitle = __webpack_require__(159);
 
-	var MyTitleFact = React.createFactory(MyTitle);
-	var ce = React.createElement;
+	var MyFirstComponent = function MyFirstComponent() {
+	  return React.createElement(
+	    'div',
+	    null,
+	    React.createElement(MyTitle, { title: 'Trying out JSX!', color: 'rebeccapurple' }),
+	    React.createElement(MyTitle, { title: 'It\'s not that awkward!', color: 'mediumaquamarine' }),
+	    React.createElement(MyTitle, { title: 'Starting to grow on me.', color: 'papayawhip' })
+	  );
+	};
 
-	var MyFirstComponent = div(null, MyTitleFact({ title: 'Props are great!', color: 'rebeccapurple' }), React.createElement(MyTitle, { title: 'Use props everywhere!', color: 'mediumaquamarine' }), ce(MyTitle, { title: 'Props are the best!', color: 'papayawhip' }));
-
-	ReactDOM.render(MyFirstComponent, document.getElementById('app'));
+	ReactDOM.render(React.createElement(MyFirstComponent, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -19719,13 +19723,19 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var div = React.DOM.div;
-	var h1 = React.DOM.h1;
 
 	var MyTitle = React.createClass({
 	  displayName: 'MyTitle',
 	  render: function render() {
-	    return div(null, h1({ style: { color: this.props.color } }, this.props.title));
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h1',
+	        { style: { color: this.props.color } },
+	        this.props.title
+	      )
+	    );
 	  }
 	});
 
