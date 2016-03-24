@@ -48,7 +48,6 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var MyTitle = __webpack_require__(159);
 
 	var App = function App() {
 	  return React.createElement(
@@ -19727,31 +19726,6 @@
 	'use strict';
 
 	module.exports = __webpack_require__(3);
-
-/***/ },
-/* 159 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var MyTitle = React.createClass({
-	  displayName: 'MyTitle',
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h1',
-	        { style: { color: this.props.color } },
-	        this.props.title
-	      )
-	    );
-	  }
-	});
-
-	module.exports = MyTitle;
 
 /***/ }
 /******/ ]);
