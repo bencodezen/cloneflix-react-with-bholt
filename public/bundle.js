@@ -53,17 +53,23 @@
 
 	var Router = _require.Router;
 	var Route = _require.Route;
+	var IndexRoute = _require.IndexRoute;
 	var hashHistory = _require.hashHistory;
 
 	var Landing = __webpack_require__(216);
 	var Search = __webpack_require__(217);
+	var Layout = __webpack_require__(220);
 
 	var App = function App() {
 	  return React.createElement(
 	    Router,
 	    { history: hashHistory },
-	    React.createElement(Route, { path: '/', component: Landing }),
-	    React.createElement(Route, { path: '/search', component: Search })
+	    React.createElement(
+	      Route,
+	      { path: '/', component: Layout },
+	      React.createElement(IndexRoute, { component: Landing }),
+	      React.createElement(Route, { path: '/search', component: Search })
+	    )
 	  );
 	};
 
@@ -25035,21 +25041,17 @@
 	var Landing = function Landing() {
 	  return React.createElement(
 	    'div',
-	    { className: 'app-container' },
+	    { className: 'home-info' },
 	    React.createElement(
-	      'div',
-	      { className: 'home-info' },
-	      React.createElement(
-	        'h1',
-	        { className: 'title' },
-	        'svideo'
-	      ),
-	      React.createElement('input', { className: 'search', type: 'text', placeholder: 'Search' }),
-	      React.createElement(
-	        Link,
-	        { to: '/search', className: 'browse-all' },
-	        ' or Browse All'
-	      )
+	      'h1',
+	      { className: 'title' },
+	      'svideo'
+	    ),
+	    React.createElement('input', { className: 'search', type: 'text', placeholder: 'Search' }),
+	    React.createElement(
+	      Link,
+	      { to: '/search', className: 'browse-all' },
+	      ' or Browse All'
 	    )
 	  );
 	};
@@ -25309,6 +25311,31 @@
 	};
 
 	module.exports = ShowCard;
+
+/***/ },
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Layout = function Layout(props) {
+	  return React.createElement(
+	    'div',
+	    { className: 'app-container' },
+	    props.children
+	  );
+	};
+
+	var element = React.PropTypes.element;
+
+
+	Layout.propTypes = {
+	  children: element.isRequired
+	};
+
+	module.exports = Layout;
 
 /***/ }
 /******/ ]);
