@@ -25063,16 +25063,43 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var shows = __webpack_require__(218);
+	var data = __webpack_require__(218);
 
 	var Search = function Search() {
 	  return React.createElement(
-	    'pre',
-	    null,
+	    'div',
+	    { className: 'container' },
 	    React.createElement(
-	      'code',
-	      null,
-	      JSON.stringify(shows, null, 4)
+	      'div',
+	      { className: 'shows' },
+	      data.shows.map(function (show) {
+	        return React.createElement(
+	          'div',
+	          { className: 'show-card' },
+	          React.createElement('img', { src: 'public/img/posters/' + show.poster, className: 'show-card-img' }),
+	          React.createElement(
+	            'div',
+	            { className: 'show-card-text' },
+	            React.createElement(
+	              'h3',
+	              { className: 'show-card-title' },
+	              show.title
+	            ),
+	            React.createElement(
+	              'h4',
+	              { className: 'show-card-year' },
+	              '(',
+	              show.year,
+	              ')'
+	            ),
+	            React.createElement(
+	              'p',
+	              { className: 'show-card-description' },
+	              show.description
+	            )
+	          )
+	        );
+	      })
 	    )
 	  );
 	};
