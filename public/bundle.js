@@ -25417,17 +25417,52 @@
 	  _createClass(Details, [{
 	    key: 'render',
 	    value: function render() {
+	      var params = this.props.params || {};
+	      var title = params.title;
+	      var description = params.description;
+	      var year = params.year;
+	      var poster = params.poster;
+	      var trailer = params.trailer;
+
+
 	      return React.createElement(
 	        'div',
 	        { style: { textAlign: 'left' }, className: 'container' },
 	        React.createElement(
-	          'pre',
-	          null,
+	          'header',
+	          { className: 'header' },
 	          React.createElement(
-	            'code',
-	            null,
-	            JSON.stringify(this.props.params, null, 4)
+	            'h1',
+	            { className: 'brand' },
+	            'svideo'
 	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'video-info' },
+	          React.createElement(
+	            'h2',
+	            { className: 'video-title' },
+	            title
+	          ),
+	          React.createElement(
+	            'h3',
+	            { className: 'video-year' },
+	            '(',
+	            year,
+	            ')'
+	          ),
+	          React.createElement('img', { className: 'video-poster', src: 'public/img/posters/' + poster }),
+	          React.createElement(
+	            'p',
+	            { className: 'video-description' },
+	            description
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'video-container' },
+	          React.createElement('iframe', { src: 'https://www.youtube-nocookie.com/embed/' + trailer + '?rel=0&amp;controls=0&amp;showinfo=0', frameBorder: '0', allowFullScreen: true })
 	        )
 	      );
 	    }
