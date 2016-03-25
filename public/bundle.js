@@ -66,19 +66,34 @@
 	var shows = _require2.shows;
 
 
-	var App = function App() {
-	  return React.createElement(
-	    Router,
-	    { history: hashHistory },
-	    React.createElement(
-	      Route,
-	      { path: '/', component: Layout },
-	      React.createElement(IndexRoute, { component: Landing }),
-	      React.createElement(Route, { path: '/search', component: Search, shows: shows }),
-	      React.createElement(Route, { path: '/details/:id', component: Details })
-	    )
-	  );
-	};
+	var App = React.createClass({
+	  displayName: 'App',
+	  assignShow: function assignShow(nextState, replace) {
+	    var showArray = shows.filter(function (show) {
+	      return show.imdbID === nextState.params.id;
+	    });
+
+	    if (showArray.length < 1) {
+	      return replace('/');
+	    }
+
+	    Object.assign(nextState.params, showArray[0]);
+	    return nextState;
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      Router,
+	      { history: hashHistory },
+	      React.createElement(
+	        Route,
+	        { path: '/', component: Layout },
+	        React.createElement(IndexRoute, { component: Landing }),
+	        React.createElement(Route, { path: '/search', component: Search, shows: shows }),
+	        React.createElement(Route, { path: '/details/:id', component: Details, onEnter: this.assignShow })
+	      )
+	    );
+	  }
+	});
 
 	ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
 
@@ -25404,14 +25419,14 @@
 	    value: function render() {
 	      return React.createElement(
 	        'div',
-	        { className: 'container' },
+	        { style: { textAlign: 'left' }, className: 'container' },
 	        React.createElement(
 	          'pre',
 	          null,
 	          React.createElement(
 	            'code',
 	            null,
-	            JSON.stringify(this.props, null, 4)
+	            JSON.stringify(this.props.params, null, 4)
 	          )
 	        )
 	      );
@@ -25420,6 +25435,13 @@
 
 	  return Details;
 	}(React.Component);
+
+	var object = React.PropTypes.object;
+
+
+	Details.propTypes = {
+	  params: object.isRequired
+	};
 
 	module.exports = Details;
 
