@@ -25090,6 +25090,7 @@
 
 	var React = __webpack_require__(1);
 	var ShowCard = __webpack_require__(218);
+	var Header = __webpack_require__(222);
 	var object = React.PropTypes.object;
 
 
@@ -25104,8 +25105,8 @@
 	  propTypes: {
 	    route: object
 	  },
-	  handleSearchTermEvent: function handleSearchTermEvent(event) {
-	    this.setState({ searchTerm: event.target.value });
+	  handleSearchTermChange: function handleSearchTermChange(searchTerm) {
+	    this.setState({ searchTerm: searchTerm });
 	  },
 	  render: function render() {
 	    var _this = this;
@@ -25113,16 +25114,11 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'container' },
-	      React.createElement(
-	        'header',
-	        { className: 'header' },
-	        React.createElement(
-	          'h1',
-	          { className: 'brand' },
-	          'svideo'
-	        ),
-	        React.createElement('input', { value: this.state.searchTerm, className: 'search-input', type: 'text', placeholder: 'Search', onChange: this.handleSearchTermEvent })
-	      ),
+	      React.createElement(Header, {
+	        handleSearchTermChange: this.handleSearchTermChange,
+	        searchTerm: this.state.searchTerm,
+	        showSearch: true
+	      }),
 	      React.createElement(
 	        'div',
 	        { className: 'shows' },
@@ -25484,11 +25480,38 @@
 	var _require = __webpack_require__(159);
 
 	var Link = _require.Link;
+	var _React$PropTypes = React.PropTypes;
+	var func = _React$PropTypes.func;
+	var bool = _React$PropTypes.bool;
+	var string = _React$PropTypes.string;
 
 
 	var Header = React.createClass({
 	  displayName: 'Header',
+
+	  propTypes: {
+	    handleSearchTermChange: func,
+	    showSearch: bool,
+	    searchTerm: string
+	  },
+	  handleSearchTermEvent: function handleSearchTermEvent(e) {
+	    this.props.handleSearchTermChange(e.target.value);
+	  },
 	  render: function render() {
+	    var utilSpace = void 0;
+	    if (this.props.showSearch) {
+	      utilSpace = React.createElement('input', { value: this.props.searchTerm, className: 'search-input', type: 'text', placeholder: 'Search', onChange: this.handleSearchTermEvent });
+	    } else {
+	      utilSpace = React.createElement(
+	        'p',
+	        { className: 'header-back' },
+	        React.createElement(
+	          Link,
+	          { to: '/search' },
+	          'Back'
+	        )
+	      );
+	    }
 	    return React.createElement(
 	      'header',
 	      { className: 'header' },
@@ -25501,15 +25524,7 @@
 	          'svideo'
 	        )
 	      ),
-	      React.createElement(
-	        'p',
-	        { className: 'header-back' },
-	        React.createElement(
-	          Link,
-	          { to: '/search' },
-	          'Back'
-	        )
-	      )
+	      utilSpace
 	    );
 	  }
 	});
