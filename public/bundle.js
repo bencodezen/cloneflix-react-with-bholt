@@ -59,6 +59,7 @@
 	var Landing = __webpack_require__(216);
 	var Search = __webpack_require__(217);
 	var Layout = __webpack_require__(220);
+	var Details = __webpack_require__(221);
 
 	var App = function App() {
 	  return React.createElement(
@@ -68,7 +69,8 @@
 	      Route,
 	      { path: '/', component: Layout },
 	      React.createElement(IndexRoute, { component: Landing }),
-	      React.createElement(Route, { path: '/search', component: Search })
+	      React.createElement(Route, { path: '/search', component: Search }),
+	      React.createElement(Route, { path: '/details/:id', component: Details })
 	    )
 	  );
 	};
@@ -25067,8 +25069,8 @@
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var React = __webpack_require__(1);
-	var ShowCard = __webpack_require__(219);
-	var data = __webpack_require__(218);
+	var ShowCard = __webpack_require__(218);
+	var data = __webpack_require__(219);
 
 	var Search = React.createClass({
 	  displayName: 'Search',
@@ -25113,6 +25115,55 @@
 
 /***/ },
 /* 218 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var ShowCard = function ShowCard(props) {
+	  return React.createElement(
+	    'div',
+	    { className: 'show-card' },
+	    React.createElement('img', { src: 'public/img/posters/' + props.poster, className: 'show-card-img' }),
+	    React.createElement(
+	      'div',
+	      { className: 'show-card-text' },
+	      React.createElement(
+	        'h3',
+	        { className: 'show-card-title' },
+	        props.title
+	      ),
+	      React.createElement(
+	        'h4',
+	        { className: 'show-card-year' },
+	        '(',
+	        props.year,
+	        ')'
+	      ),
+	      React.createElement(
+	        'p',
+	        { className: 'show-card-description' },
+	        props.description
+	      )
+	    )
+	  );
+	};
+
+	var string = React.PropTypes.string;
+
+
+	ShowCard.propTypes = {
+	  title: string.isRequired,
+	  description: string.isRequired,
+	  year: string.isRequired,
+	  poster: string.isRequired
+	};
+
+	module.exports = ShowCard;
+
+/***/ },
+/* 219 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -25289,55 +25340,6 @@
 	};
 
 /***/ },
-/* 219 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var ShowCard = function ShowCard(props) {
-	  return React.createElement(
-	    'div',
-	    { className: 'show-card' },
-	    React.createElement('img', { src: 'public/img/posters/' + props.poster, className: 'show-card-img' }),
-	    React.createElement(
-	      'div',
-	      { className: 'show-card-text' },
-	      React.createElement(
-	        'h3',
-	        { className: 'show-card-title' },
-	        props.title
-	      ),
-	      React.createElement(
-	        'h4',
-	        { className: 'show-card-year' },
-	        '(',
-	        props.year,
-	        ')'
-	      ),
-	      React.createElement(
-	        'p',
-	        { className: 'show-card-description' },
-	        props.description
-	      )
-	    )
-	  );
-	};
-
-	var string = React.PropTypes.string;
-
-
-	ShowCard.propTypes = {
-	  title: string.isRequired,
-	  description: string.isRequired,
-	  year: string.isRequired,
-	  poster: string.isRequired
-	};
-
-	module.exports = ShowCard;
-
-/***/ },
 /* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25361,6 +25363,55 @@
 	};
 
 	module.exports = Layout;
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var React = __webpack_require__(1);
+
+	var Details = function (_React$Component) {
+	  _inherits(Details, _React$Component);
+
+	  function Details() {
+	    _classCallCheck(this, Details);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Details).apply(this, arguments));
+	  }
+
+	  _createClass(Details, [{
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'div',
+	        { className: 'container' },
+	        React.createElement(
+	          'pre',
+	          null,
+	          React.createElement(
+	            'code',
+	            null,
+	            JSON.stringify(this.props, null, 4)
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Details;
+	}(React.Component);
+
+	module.exports = Details;
 
 /***/ }
 /******/ ]);
