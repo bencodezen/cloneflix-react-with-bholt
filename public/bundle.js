@@ -61,6 +61,11 @@
 	var Layout = __webpack_require__(220);
 	var Details = __webpack_require__(221);
 
+	var _require2 = __webpack_require__(219);
+
+	var shows = _require2.shows;
+
+
 	var App = function App() {
 	  return React.createElement(
 	    Router,
@@ -69,7 +74,7 @@
 	      Route,
 	      { path: '/', component: Layout },
 	      React.createElement(IndexRoute, { component: Landing }),
-	      React.createElement(Route, { path: '/search', component: Search }),
+	      React.createElement(Route, { path: '/search', component: Search, shows: shows }),
 	      React.createElement(Route, { path: '/details/:id', component: Details })
 	    )
 	  );
@@ -25070,7 +25075,8 @@
 
 	var React = __webpack_require__(1);
 	var ShowCard = __webpack_require__(218);
-	var data = __webpack_require__(219);
+	var object = React.PropTypes.object;
+
 
 	var Search = React.createClass({
 	  displayName: 'Search',
@@ -25078,6 +25084,10 @@
 	    return {
 	      searchTerm: ''
 	    };
+	  },
+
+	  propTypes: {
+	    route: object
 	  },
 	  handleSearchTermEvent: function handleSearchTermEvent(event) {
 	    this.setState({ searchTerm: event.target.value });
@@ -25101,7 +25111,7 @@
 	      React.createElement(
 	        'div',
 	        { className: 'shows' },
-	        data.shows.filter(function (show) {
+	        this.props.route.shows.filter(function (show) {
 	          return (show.title + ' ' + show.description).toUpperCase().indexOf(_this.state.searchTerm.toUpperCase()) >= 0;
 	        }).map(function (show) {
 	          return React.createElement(ShowCard, _extends({}, show, { key: show.imdbID }));
